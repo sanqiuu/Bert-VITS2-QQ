@@ -1,0 +1,88 @@
+BotSelfConfig:
+  command_sep:
+  - .
+  command_start:
+  - ''
+  - /
+  debug: false
+  host: 127.0.0.1
+  nickname:
+  - ATRI
+  - Atri
+  - atri
+  - "\u4E9A\u6258\u8389"
+  - "\u30A2\u30C8\u30EA"
+  port: 20000
+  proxy: ''
+  session_expire_timeout: 60
+  superusers:
+  - '3041213493'
+account:
+  encrypt: false
+  password: ''
+  relogin:
+    delay: 3
+    disabled: false
+    interval: 0
+    max-times: 0
+  status: 0
+  uin: 1209803531
+  use-sso-address: true
+database:
+  leveldb:
+    enable: true
+default-middlewares:
+  access-token: ''
+  filter: ''
+  rate-limit: &id001
+    bucket: 1
+    enabled: false
+    frequency: 1
+heartbeat:
+  disabled: false
+  interval: 5
+message:
+  extra-reply-data: false
+  fix-url: false
+  force-fragment: false
+  ignore-invalid-cqcode: false
+  post-format: string
+  proxy-rewrite: ''
+  remove-reply-at: false
+  report-self-message: false
+output:
+  debug: false
+  log-level: warn
+servers:
+- http:
+    disabled: false
+    host: 127.0.0.1
+    middlewares:
+      access-token: ''
+      filter: ''
+      rate-limit: *id001
+    port: 5701
+    post: null
+    timeout: 5
+- ws:
+    disabled: false
+    host: 127.0.0.1
+    middlewares:
+      access-token: ''
+      filter: ''
+      rate-limit: *id001
+    port: 6701
+- ws-reverse:
+    api: ws://your_websocket_api.server
+    disabled: false
+    event: ws://your_websocket_event.server
+    middlewares:
+      access-token: ''
+      filter: ''
+      rate-limit: *id001
+    reconnect-interval: 3000
+    universal: ws://127.0.0.1:8080/onebot/v11/ws/
+- pprof:
+    disabled: true
+    host: 127.0.0.1
+    port: 7700

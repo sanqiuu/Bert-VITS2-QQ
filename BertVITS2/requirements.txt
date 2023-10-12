@@ -1,0 +1,15 @@
+librosa==0.9.1
+matplotlib
+numpy
+numba
+phonemizer
+scipy
+tensorboard
+Unidecode
+amfm_decompy
+jieba
+transformers
+pypinyin
+cn2an
+gradio
+av
