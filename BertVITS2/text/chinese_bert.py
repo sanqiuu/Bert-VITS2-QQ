@@ -12,8 +12,8 @@ device = torch.device(
         )
     )
 
-tokenizer = AutoTokenizer.from_pretrained("D:\Code\Bert-VITS2-QQ\BertVITS2\bert/chinese-roberta-wwm-ext-large")
-model = AutoModelForMaskedLM.from_pretrained("D:\Code\Bert-VITS2-QQ\BertVITS2\bert/chinese-roberta-wwm-ext-large").to(device)
+tokenizer = AutoTokenizer.from_pretrained("D:/Code/Bert-VITS2-QQ/BertVITS2/bert/chinese-roberta-wwm-ext-large")
+model = AutoModelForMaskedLM.from_pretrained("D:/Code/Bert-VITS2-QQ/BertVITS2/bert/chinese-roberta-wwm-ext-large").to(device)
 
 def get_bert_feature(text, word2ph):
     with torch.no_grad():
