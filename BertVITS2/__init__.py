@@ -86,12 +86,33 @@ net_g = SynthesizerTrn(
         **hps.model).to(device)
 _ = net_g.eval()
 _ = utils.load_checkpoint(model, net_g, None, skip_optimizer=True)
-    
-def Trans_GS(text = "哎嘿",speaker_id=0,out_path='voice.wav'):
 
-    audio = tts_fn(text, speaker_id, sdp_ratio=0.2,noise_scale=0.6, noise_scale_w=0.8, length_scale=1.0)
-    write(out_path, hps.data.sampling_rate, audio)
+#https://genshinvoice.top/api?speaker=%E4%B8%B9%E6%81%92&text=%E4%BD%A0%E5%A5%BD&format=wav&length=1&noise=0.5&noisew=0.9&sdp_ratio=0.2
+
+import requests
+Is_Web = True 
+def Trans_GS(text = "哎嘿",speaker_id=0,out_path='voice.wav'):
+    audio = None
+    if Is_Web == True:
+        audio = tts_fn(text, speaker_id, sdp_ratio=0.2,noise_scale=0.6, noise_scale_w=0.8, length_scale=1.0)
+        write(out_path, hps.data.sampling_rate, audio)
+    else:
+        headers={
+        'User-Agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Mobile Safari/537.36'
+        }
+        url='https://genshinvoice.top/api'
+        param = {
+        'speaker': '温迪',
+        'text':text,
+        'format':'wav',
+        'length':1.25,
+        'noise':0.3,
+        'noisew':0.9,
+        'sdp_ratio':0.2
+        }
+        audio = requests.get(url,param,headers) #三个参数
+        write(out_path, hps.data.sampling_rate, audio)
+        audio.close()
     print('voice Successfully saved!')
     
-    
-    
+
